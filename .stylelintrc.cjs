@@ -3,10 +3,9 @@ module.exports = {
   plugins: ['stylelint-order'],
   // 继承推荐规范配置
   extends: [
-    'stylelint-config-standard',
-    'stylelint-config-recommended-scss',
-    'stylelint-config-recommended-vue/scss',
     'stylelint-config-html/vue',
+    'stylelint-config-standard-scss',
+    'stylelint-config-recommended-vue/scss',
     'stylelint-config-recess-order'
   ],
   // 指定不同文件对应的解析器

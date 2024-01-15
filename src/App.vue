@@ -6,9 +6,20 @@ import Logo from '@/assets/logo.svg'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/logo.svg"
+      width="125"
+      height="125"
+    />
 
-    <Logo alt="Vue logo" class="logo" width="125" height="125" />
+    <Logo
+      alt="Vue logo"
+      class="logo"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />

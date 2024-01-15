@@ -123,20 +123,17 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           // 拆分 chunk
           manualChunks(id: string) {
             if (id.includes('node_modules')) {
+              if (id.includes('element-plus')) {
+                return 'chunk_element_plus'
+              }
               if (id.includes('vue') || id.includes('pinia')) {
                 return 'chunk_vue'
               }
               if (id.includes('unocss')) {
                 return 'chunk_unocss'
               }
-              if (id.includes('element-plus')) {
-                return 'chunk_element_plus'
-              }
               if (id.includes('lodash-es') || id.includes('axios')) {
                 return 'chunk_utils'
-              }
-              if (id.includes('lint')) {
-                return 'chunk_lint'
               }
 
               return 'chunk_others'
