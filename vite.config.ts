@@ -123,8 +123,23 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           // 拆分 chunk
           manualChunks(id: string) {
             if (id.includes('node_modules')) {
-              // 通过 split 获取 node_modules 包的名称
-              return id.split('node_modules/')[1].split('/')[0]
+              if (id.includes('vue') || id.includes('pinia')) {
+                return 'chunk_vue'
+              }
+              if (id.includes('unocss')) {
+                return 'chunk_unocss'
+              }
+              if (id.includes('element-plus')) {
+                return 'chunk_element_plus'
+              }
+              if (id.includes('lodash-es') || id.includes('axios')) {
+                return 'chunk_utils'
+              }
+              if (id.includes('lint')) {
+                return 'chunk_lint'
+              }
+
+              return 'chunk_others'
             }
           },
           // 用于从入口点创建的块的打包输出格式 [name] 表示文件名，[hash] 表示该文件内容 hash 值
