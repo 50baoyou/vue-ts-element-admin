@@ -1,6 +1,11 @@
-import { defineMock } from 'vite-plugin-mock-dev-server'
+import definePostMock from './index.mock'
 
-export default defineMock({
+export default definePostMock({
   url: '/api/test',
-  body: {}
+  body: {
+    code: 200,
+    data: {
+      msg: '测试1111111111111111'
+    }
+  }
 })

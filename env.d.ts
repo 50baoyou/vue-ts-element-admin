@@ -10,17 +10,18 @@ interface ImportMetaEnv {
   /**
    * 应用标题
    */
-  VITE_APP_TITLE: string
+  readonly VITE_APP_TITLE: string
   /**
    * 应用端口
    */
-  VITE_APP_PORT: number
+  readonly ITE_APP_PORT: number
   /**
    * API路径(反向代理)
    */
-  VITE_APP_API: string
+  readonly VITE_APP_API: string
 }
 
+// 声明 env
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }

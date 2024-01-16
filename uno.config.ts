@@ -8,7 +8,8 @@ export default defineConfig({
     presetIcons({
       // 将图标集合作为异步块进行打包并按需加载
       collections: {
-        bi: () => import('@iconify-json/bi/icons.json').then((i) => i.default)
+        bi: () => import('@iconify-json/bi/icons.json').then((i) => i.default),
+        ep: () => import('@iconify-json/ep/icons.json').then((i) => i.default)
       }
     })
   ]

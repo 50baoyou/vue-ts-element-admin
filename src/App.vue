@@ -2,27 +2,21 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Logo from '@/assets/logo.svg'
+import axios from '@/utils/request'
+
+onMounted(async () => {
+  const result = await axios.get('/api/test')
+  console.log(result.data.msg)
+})
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <Logo
-      alt="Vue logo"
-      class="logo"
-      width="125"
-      height="125"
-    />
+    <Logo class="w-xs" />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <p class="font-size-4">测试文字</p>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

@@ -3,23 +3,24 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv, ConfigEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { compression } from 'vite-plugin-compression2'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import svgLoader from 'vite-svg-loader'
 import UnoCSS from 'unocss/vite'
+import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 
 function path(url: string): string {
   return fileURLToPath(new URL(url, import.meta.url))
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   // 在开发环境下 command 的值为 serve（vite），而在生产环境下为 build（vite build）
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   const env = loadEnv(mode, process.cwd())
@@ -31,6 +32,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     },
     plugins: [
       vue(),
+      mockDevServerPlugin(),
       compression({
         include: ['js', 'css'],
         threshold: 500
@@ -38,12 +40,6 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       createHtmlPlugin({
         // 压缩 html
         minify: true,
-        // 需要注入 index.html ejs 模版的数据
-        inject: {
-          data: {
-            title: env.VITE_APP_TITLE
-          }
-        },
         // 如果 vite 版本高于 5.0.0-beta.13，可以将 viteNext 设置为 true 来进行兼容
         viteNext: true
       }),
@@ -102,7 +98,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       // 允许IP访问
       host: true,
       // 应用端口 (默认:5173)
-      port: command === 'serve' ? Number(env.VITE_APP_PORT) : 8080,
+      port: Number(env.VITE_APP_PORT),
       // 运行是否自动打开浏览器
       open: true,
       proxy: {
@@ -111,7 +107,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           // 允许跨域
           changeOrigin: true,
           // 目标接口
-          target: command === 'serve' ? `http://localhost:${env.VITE_APP_PORT}` : '填写接口域名',
+          target: `http://localhost:${env.VITE_APP_PORT}`,
           // 重写请求路径
           rewrite: (path: string) => path.replace(new RegExp('^' + env.VITE_APP_API), '')
         }
