@@ -2,21 +2,135 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      href="/favicon.ico"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vue3 + Vite4 + TypeScript5 + Element-Plus 的后台管理模板" />
     <title>%VITE_APP_TITLE%</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script
-      type="module"
-      src="/src/main.ts"
-    ></script>
+    <div id="app">
+      <div class="loader-main">
+        <div class="loader"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .loader-main {
+        position: fixed;
+        z-index: 9999999;
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+      }
+
+      .loader {
+        position: relative;
+        z-index: 999999;
+        width: 50px;
+        height: 50px;
+        margin: 30px auto 40px;
+        margin-top: 20%;
+        background-color: whitesmoke;
+      }
+
+      .loader::before {
+        position: absolute;
+        top: 59px;
+        left: 0;
+        width: 50px;
+        height: 7px;
+        content: '';
+        background: #000;
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: shadow 0.5s linear infinite;
+      }
+
+      .loader::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        content: '';
+        background-color: #5fb878;
+        border-radius: 3px;
+        animation: loading 0.5s linear infinite;
+      }
+
+      @keyframes loading {
+        17% {
+          border-bottom-right-radius: 3px;
+        }
+
+        25% {
+          transform: translateY(9px) rotate(22.5deg);
+        }
+
+        50% {
+          border-bottom-right-radius: 40px;
+          transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+        }
+
+        75% {
+          transform: translateY(9px) rotate(67.5deg);
+        }
+
+        100% {
+          transform: translateY(0) rotate(90deg);
+        }
+      }
+
+      @keyframes loading {
+        17% {
+          border-bottom-right-radius: 3px;
+        }
+
+        25% {
+          transform: translateY(9px) rotate(22.5deg);
+        }
+
+        50% {
+          border-bottom-right-radius: 40px;
+          transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+        }
+
+        75% {
+          transform: translateY(9px) rotate(67.5deg);
+        }
+
+        100% {
+          transform: translateY(0) rotate(90deg);
+        }
+      }
+
+      @keyframes shadow {
+        0%,
+        100% {
+          transform: scale(1, 1);
+        }
+
+        50% {
+          transform: scale(1.2, 1);
+        }
+      }
+
+      @keyframes shadow {
+        0%,
+        100% {
+          transform: scale(1, 1);
+        }
+
+        50% {
+          transform: scale(1.2, 1);
+        }
+      }
+    </style>
   </body>
 </html>

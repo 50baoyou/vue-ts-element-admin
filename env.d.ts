@@ -1,11 +1,5 @@
 /// <reference types="vite/client" />
 
-// 声明scss类型
-declare module '*.scss' {
-  const content: { [className: string]: string }
-  export default content
-}
-
 interface ImportMetaEnv {
   /**
    * 应用标题

@@ -1,7 +1,7 @@
 // 浏览器样式重置
 import '@unocss/reset/tailwind-compat.css'
-import '@/assets/main.css'
 import '@/styles/index.scss'
+import 'element-plus/theme-chalk/src/dark/css-vars.scss'
 // 注意：项目内的样式，最好放在重置样式后，uno.css前
 import 'virtual:uno.css'
 

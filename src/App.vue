@@ -1,92 +1,16 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import Logo from '@/assets/logo.svg'
-import axios from '@/utils/request'
-
-onMounted(async () => {
-  const result = await axios.get('/api/test')
-  console.log(result.data.msg)
-})
-</script>
-
 <template>
-  <header>
-    <Logo class="w-xs" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <p class="font-size-4">测试文字</p>
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <ElConfigProvider :locale="appStore.locale" :size="appStore.size">
+    <RouterView />
+  </ElConfigProvider>
 </template>
 
-<style scoped>
-header {
-  max-height: 100vh;
-  line-height: 1.5;
-}
+<script setup lang="ts">
+import { useAppStore } from '@/stores/app'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  margin-top: 2rem;
-  font-size: 12px;
-  text-align: center;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (width >= 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+const appStore = useAppStore()
+onMounted(() => {
+  if (appStore.darkMode === 'dark') {
+    document.documentElement.classList.add('dark')
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    place-items: flex-start;
-  }
-
-  nav {
-    padding: 1rem 0;
-    margin-top: 1rem;
-    margin-left: -1rem;
-    font-size: 1rem;
-    text-align: left;
-  }
-}
-</style>
+})
+</script>

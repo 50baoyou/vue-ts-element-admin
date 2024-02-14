@@ -1,20 +1,18 @@
 @use './mixin.scss' as *;
 
+html {
+  font-size: 16px;
+}
+
 html,
 body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-size: 16px;
 }
 
-.clearfix {
-  &::after {
-    display: block;
-    height: 0;
-    clear: both;
-    font-size: 0;
-    visibility: hidden;
-    content: ' ';
-  }
+#app {
+  height: 100%;
+
+  // color: #000000d9;
 }
